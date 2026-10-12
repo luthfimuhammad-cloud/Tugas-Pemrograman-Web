@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Luthfi Muhammad Mardiana</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 19px;
+            color: black;
+            background-color: #eef1f7;
+            background-image: url("download.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: rgb(48, 0, 190);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            margin: 0 4px;
+            border-radius: 5px;
+            border: 1px solid rgb(48, 0, 190);
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .page-section {
+            display: none; 
+        }
+
+        .page-section:target,
+        #home:not(:target) {
+            display: block;
+        }
+
+        #tentang:target ~ #home,
+        #kontak:target ~ #home {
+            display: none;
+        }
+
+        h2 {
+            border-bottom: 2px solid rgb(48, 0, 190);
+            padding-bottom: 6px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid rgb(48, 0, 190);
+            display: block;
+            margin: 15px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 2px solid #333;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: rgb(48, 0, 190);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #200080;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+    <style>
+        .skill-list {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        .hero-banner {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Portofolio</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#tentang">Tentang Saya</a>
+                <a href="#kontak">Kontak</a>
+            </nav>
+        </header>
+        <hr>
+        <main>
+            <section id="home" class="page-section">
+                <div class="hero-banner">
+                    <img src="test.jpeg" alt="Foto Luthfi Muhammad Mardiana" class="profile-img">
+                    <h2 style="border-bottom: none; text-align: center;">Selamat Datang di Portofolio Saya</h2>
+                    <p style="font-size:19;font-family: Times New Roman;color:black">
+                    Halo! Saya Luthfi Muhammad Mardiana, mahasiswa Teknik Informatika yang sedang belajar membuat portofolio
+                    pemrograman web melalui coding.</p>
+                </div>
+                <h2>Data Diri</h2>
+                <p>
+                    <strong>Nama:</strong> Luthfi Muhammad Mardiana <br>
+                    <strong>Jurusan:</strong> Teknik Informatika <br>
+                    <strong>Kampus:</strong> Universitas Paramadina
+                </p>
+                <p style="background-color: #e2e8f0; padding: 12px; border-left: 5px solid rgb(48, 0, 190); border-radius: 4px; margin-top: 15px;">
+                    Silahkan jelajahi menu <strong>Tentang Saya</strong> untuk melihat kemampuan dan riwayat pendidikan, atau gunakan menu <strong>Kontak</strong> untuk mengirimkan pesan,
+                    caranya Pencet yang di atas, Home, Tentang saya, dan Kontak.
+                </p>
+            </section>
+            <section id="tentang" class="page-section">
+                <h2>Tentang Saya</h2>
+                <p>
+                    Halo, perkenalkan nama saya Luthfi Muhammad Mardiana.<br> 
+                    Saya adalah mahasiswa Teknik Informatika di Universitas Paramadina. Saya sedang belajar pemrograman,
+                    yaitu HTML dan teknologi web. Saya masih dalam tahap belajar membuat website menggunakan HTML dan CSS.
+                </p>
+                <h2>Kemampuan</h2>
+                <ul class="skill-list">
+                    <li>HTML (Web Sederhana)</li>
+                    <li>CSS (Styling)</li>
+                    <li>Database</li>
+                </ul>
+                <h2>Riwayat Pendidikan</h2>
+                <table style="margin-bottom: 24px; margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">No</th>
+                            <th style="width: 10%;">Tingkat</th>
+                            <th style="width: 40%;">Institusi</th>
+                            <th style="width: 50%;">Tahun</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>SMPIT</td>
+                            <td>SMPIT Al-Fikri</td>
+                            <td>2019-2022</td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>SMA</td>
+                            <td>SMA 1 Cikarang Selatan</td>
+                            <td>2022-2025</td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>Mahasiswa</td>
+                            <td>Universitas Paramadina</td>
+                            <td>2025-Sekarang</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="kontak" class="page-section">
+                <h2>Informasi Kontak</h2>
+                <p>
+                    <strong>Email:</strong> 
+                    <a href="mailto:luthfi.luthfimm@gmail.com">luthfi.luthfimm@gmail.com</a>
+                    <br>
+                    <strong>WhatsApp:</strong> 0851-5834-8343
+                </p>
+                <h2>Form Kontak</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesan">Pesan:</label>
+                        <textarea id="pesan" name="pesan" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" style="margin-top: 10px;">Kirim</button>
+                </form>
+            </section>
+        </main>
+        <hr style="margin-top: 25px;">
+        <footer>
+            <p>&copy; Luthfi Muhammad Mardiana</p>
+        </footer>
+    </div>
+</body>
+</html>
