@@ -1,50 +1,485 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8"
-        <meta name="viewport" content="width=devince-wid-initial-scale=1,0">
-        <title>Portofolio Luthfi</title>
-        <style>
-            body{
-                background-image: url("download.jpg");
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-attachment:fixed;
-            }
-        </style>
-    </head>
-    <body>
-        <header class="letter" style="font-size: 40px;font-family:times new roman;color:black">
-            <h1>Portofolio</h1>
-        </header>
-        <hr>
-        <h2>Data diri saya</h2>
-        <p style="font-size: 19px;font-family:times new roman;color:black">
-            Nama: Luthfi Muhammad Mardiana <br>
-            Jurusan: Teknik Informatika <br>
-            Kampus: Universitas Paramadina
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tugas Pemrograman Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@200;300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tooplate-ivory-style.css">
+
+<style>
+.lookbook-link { display: block; cursor: zoom-in; }
+
+.lookbook-card { flex: 0 0 280px; width: 280px; }
+.lookbook-card img { width: 100%; height: auto; min-height: 0; aspect-ratio: 3 / 4; object-fit: cover; }
+
+.lookbook-card .deskripsi,
+.lookbook-card p { display: none; }
+
+.modal { display: none; position: fixed; inset: 0; z-index: 3000; align-items: center; justify-content: center; padding: 24px; }
+.modal:target { display: flex; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(26, 23, 20, 0.72); backdrop-filter: blur(6px); cursor: zoom-out; }
+.modal-panel { position: relative; z-index: 1; display: grid; grid-template-columns: 0.9fr 1.1fr; width: min(980px, 100%); height: min(88vh, 720px); background: var(--oat); border-radius: 28px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35); }
+.modal-panel > img { width: 100%; height: 100%; object-fit: contain; background: var(--oat-mid); }
+.modal-body { padding: 56px 44px 40px; overflow-y: auto; }
+.modal-title { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; margin-bottom: 16px; }
+.modal-lead { font-size: 14px; font-weight: 300; line-height: 1.85; color: var(--ink-soft); }
+.modal-close { position: absolute; top: 16px; right: 16px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 768px) {
+  .lookbook-card { flex: 0 0 220px; width: 220px; }
+  .lookbook-card img { height: auto; min-height: 0; }
+  .modal-panel { grid-template-columns: 1fr; grid-template-rows: 34vh auto; height: auto; max-height: 92vh; overflow-y: auto; }
+  .modal-body { padding: 28px 24px 32px; overflow: visible; }
+}
+
+.register {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 24px 70px;
+  background: var(--oat-mid, #ebe3d5);
+}
+
+.register-form {
+  width: min(560px, 100%);
+  background: var(--white, #fffdf9);
+  padding: 56px 48px 44px;
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(26, 23, 20, 0.12);
+}
+
+.register-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft, #6b635a);
+  margin-bottom: 12px;
+}
+
+.register-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5vw, 46px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 36px;
+  color: var(--ink, #1a1714);
+}
+
+.reg-group { margin-bottom: 26px; }
+
+.reg-label {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink, #1a1714);
+  margin-bottom: 8px;
+}
+
+.reg-row { display: flex; gap: 16px; }
+.reg-col { flex: 1; min-width: 0; }
+
+.register-form input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink, #1a1714);
+  background: var(--oat, #f5efe4);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color .25s, background .25s, box-shadow .25s;
+}
+.register-form input:hover { background: var(--oat-mid, #ebe3d5); }
+.register-form input:focus {
+  background: var(--white, #fffdf9);
+  border-color: var(--ink, #1a1714);
+  box-shadow: 0 0 0 4px rgba(26, 23, 20, 0.06);
+}
+.register-form input:user-invalid { border-color: #b3261e; }
+
+.register-form small {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink-soft, #6b635a);
+}
+
+.reg-kirim {
+  display: block;
+  width: 100%;
+  margin-top: 34px;
+  padding: 16px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white, #fffdf9);
+  background: var(--ink, #1a1714);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+}
+.reg-kirim:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(26, 23, 20, 0.25);
+}
+
+.reg-info {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink-soft, #6b635a);
+}
+
+@media (max-width: 768px) {
+  .register-form { padding: 36px 24px 32px; border-radius: 22px; }
+  .reg-row { flex-direction: column; gap: 0; }
+  .reg-row .reg-col + .reg-col { margin-top: 16px; }
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div class="est-label" aria-hidden="true">Est. 2026</div>
+
+<nav class="pill-nav" aria-label="Main Navigation">
+  <a href="#registrasi">registrasi</a>
+  <a href="#hero">Home</a>
+  <a href="#lookbook">Proyek EXPO</a>
+  <a href="#product">Bazaar</a>
+  <a href="#process">Keluh Kesah</a>
+  <a href="#signature">Kontak</a>
+</nav>
+
+<a href="#menu" class="hamburger" aria-label="Open Navigation"><span></span><span></span><span></span></a>
+<nav class="mobile-nav" id="menu" aria-label="Mobile Navigation">
+  <a href="#hero" class="hamburger open menu-close" aria-label="Close Navigation"><span></span><span></span><span></span></a>
+  <a href="#registrasi">registrasi</a>
+  <a href="#hero">Home</a>
+  <a href="#lookbook">Proyek EXPO</a>
+  <a href="#product">Bazaar</a>
+  <a href="#process">Keluh Kesah</a>
+  <a href="#signature">Kontak</a>
+</nav>
+
+<main>
+
+<section class="canvas-section register" id="registrasi">
+    <form class="register-form" autocomplete="off" onsubmit="event.preventDefault(); alert('Registrasi berhasil! Sampai jumpa di IT Fest EXPO.'); this.reset();">
+      <div class="register-eyebrow">13 Oktober 2026</div>
+      <h2 class="register-title">Registrasi IT Fest EXPO</h2>
+
+      <div class="reg-group">
+        <label class="reg-label" for="depan">Nama</label>
+        <div class="reg-row">
+          <div class="reg-col">
+            <input type="text" id="depan" name="depan" placeholder="Isi" required>
+            <small>Nama Depan</small>
+          </div>
+          <div class="reg-col">
+            <input type="text" id="belakang" name="belakang" placeholder="Isi">
+            <small>Nama Belakang</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-group">
+        <label class="reg-label" for="nim">NIM</label>
+        <input type="text" id="nim" name="nim" inputmode="numeric" pattern="[0-9]+" title="NIM hanya berisi angka" placeholder="Isi" required>
+        <small>Hanya angka</small>
+      </div>
+
+      <div class="reg-group">
+        <label class="reg-label" for="prodi">Prodi</label>
+        <input type="text" id="prodi" name="prodi" placeholder="Isi" required>
+      </div>
+
+      <div class="reg-group">
+        <label class="reg-label" for="kampus">Kampus</label>
+        <input type="text" id="kampus" name="kampus" placeholder="Isi" required>
+      </div>
+
+      <button type="submit" class="reg-kirim">Kirim</button>
+      <p class="reg-info">Lengkapi semua kolom terlebih dahulu</p>
+    </form>
+  </section>
+
+  <section class="canvas-section hero" id="hero">
+    <div class="hero-image">
+      <img src="images/poto.jpeg" loading="eager">
+      <div class="hero-image-tag">13 Oktober 2026</div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Pameran Rancangan Aplikasi Website &amp; Iot</div>
+      <h1 class="hero-title">IT<br><em>Fest</em><br>EXPO</h1>
+      <p class="hero-desc">Kami membuat proyek acara IT fest yang mengenai Expo untuk menampilkan inovasi terbaru dalam dunia teknologi dan memperkenalkan invatif yang dibuat oleh para mahasiswa</p>
+      <div class="hero-cta">
+        <a href="#lookbook" class="cta-link">Discover the Collection Expo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="canvas-section lookbook" id="lookbook">
+    <div class="lookbook-header reveal">
+      <h2 class="lookbook-title">Informatics Engineering project Exhibition</h2>
+      <span class="lookbook-count" style="font-family:Times New Roman; color: #000000; font-size: 16px;">01 — 05</span>
+    </div>
+    <div class="lookbook-track">
+      <div class="lookbook-card">
+        <a href="#detail-1" class="lookbook-link"><img src="images/Jadi Petani.jpeg" loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">01 Jadi Petani</span>
+        <div class="deskripsi">
+    <p style="font-family:Times New Roman">
+      Jadipetani adalah platform digital berbasis website yang mendukung regenerasi petani Indonesia<br>
+      dengan menghubungkan petani senior dan generasi muda. Fitur utamanya meliputi program magang, <br>
+      job connector, kurikulum berbasis AI, dan komunitas. Model bisnisnya terdiri dari paket langganan<br>
+      (50%), komisi layanan(30%), serta lisensi sekolah dan klinik (20%). Platform ini menggunakan React,<br>
+      Tailwind CSS, Express.js, Prisma ORM, Postgresql, Gemini AI, dan midtrans untuk mendukung pertanian<br>
+      yang lebih maju.
+    </p>
+  </div>
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-2" class="lookbook-link"><img src="images/Teliti.jpeg" alt="Laptop menampilkan demo aplikasi JadiPetani" loading="lazy"></a>
+                <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">02 Teliti</span>
+        <div>
+          <p style="font-family:Times New Roman">
+            Teliti adalah platform web berbasis AI untuk deteksi bias (7 kategori) dan konsistensi argumen <br>
+      dokumen akademik melalui fitur laporan lengkap, Integrity Score (0-100), dan document viewer dengan <br>
+      highlight. Model bisnisnya menyediakan akses gratis penuh untuk mahasiswa guna memberikan keunggulan <br>
+      kompetitif dibanding platform lain. Teknologi utamanya didukung oleh Gemini AI untuk menjalankan dua analisis<br>
+      paralel secara instan dan akurat.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-3" class="lookbook-link"><img src="images/Kulakan.jpeg"  loading="lazy"></a>
+                <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">03 Kulakan</span>
+        <p style="font-family:Times New Roman">
+          Kulakan adalah aplikasi manajemen bisnis perikanan yang memudahkan pengguna mengelola transaksi,stok,<br>
+          dan penjualan hasil laut dalam satu platform. Fitur utamanya meliputi dashboard interaktif, pengelolaan <br>
+          stok dan inventaris, pencatatan transaksi, peta lokasi nelayan dan pasar, serta laporan dan analisis berbasis AI.<br> 
+          Kulakukan membantu pelaku usaha perikanan memantau keuagan, mengelola persediaan, dan meningkatkan<br> efisiensi bisnis secara digital. <br>
         </p>
-        <h2>Tentang saya</h2>
-        <p style="font-size: 19px;font-family:times new roman;color:black">
-            Hallo, Perkenalkan nama saya Luthfi. Saya adalah mahasiswa Teknik Informatika.<br>
-            Saya sedan belajar mengenai pemrograman yaitu HTML dan teknologi.<br>
-            Saya masih dalam tahap belajar membuat website menggunakan HTML.
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-4" class="lookbook-link"><img src="images/Titip.jpeg"  loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">04 Titip</span>
+        <p style="font-family:Times New Roman;">
+          Titip adalah sistem cold staroge pintar berbasis AI dan IOT yang membantu menjaga kesegaran produk<br>
+          pangan di pasar tradisional. Sistem ini dilengkapi sensor suhu kelembapan, dan gas untuk memantau<br>
+          kondisi penyimpanan secara real-time, serta AI untuk memprediksi masa layak jual produk. Fitur utamanya <br>
+          meliputi pemantauan melalui dashbord PWA, penyewaan loker pendingin, akses otomatis menggukana QR code,<br>
+          dan pembayaran digital terintegrasi QRIS.
         </p>
-        <h2>keahlian</h2>
-        <ul>
-            <li style="font-size: 19px;font-family:times new roman;color:black">HTML</li>
-            <li style="font-size: 19px;font-family:times new roman;color:black">CSS</li>
-        </ul>
-        <h2>Pengalaman / Projek</h2>
-        <ol>
-            <li style="font-size: 19px;font-family:times new roman;color:black">Membuat Website sederhana</li>
-            <li style="font-size: 19px;font-family:times new roman;color:black">Membuat database sederhana</li>
-        </ol>
-        <h2>Kontak</h2>
-        <a style="color:rgb(48, 0, 190);margin-right: 12px;font-size:19px; font-family: times new roman;" href="index.html">
-                luthfi.luthfimm@gmail.com</a>
-        <p style="font-size: 19px;font-family:times new roman;color:black">Whastapp: 0851-5834-8343</p>
-        <hr>
-        <p style="font-size: 19px;font-family:times new roman;color:black"> Luthfi Muhammad Mardiana</p>
-    </body
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-5" class="lookbook-link"><img src="images/ivory-flow-15.jpg" loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">05 Paramaflood Monitor</span>
+        <p style="font-family:Times New Roman;">
+        Paramaflood monitor adalah sistem pemantauan cuaca dan peringatan<br>
+        dini banjir berbasis IOT dan AI, Sistem ini menggunakan sensor untuk<br>
+        memantau kondisi lingkungan secara real-time, memprediksi potensi <br>
+        banjir dengan teknologi LSTM, dan memberikan notifikasi dan rekomendasi keselamatan melalui aplikasi mobile flutter.
+        </p>
+      </div>
+      </div>
+      <hr>
+    <div class="lookbook-footer reveal">
+    </div>
+  </section>
+
+  <section class="canvas-section lookbook" id="product">
+    <div class="lookbook-header reveal">
+      <h2 class="lookbook-title">Bazaar IT Fest EXPO</h2>
+      <span class="lookbook-count" style="font-family:Times New Roman; color: #000000; font-size: 16px;">01 — 03</span>
+    </div>
+    <div class="lookbook-track">
+      <div class="lookbook-card">
+        <a href="#detail-6" class="lookbook-link"><img src="images/chicken.jpeg" alt="Chicken" loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">01 Chicken</span>
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-7" class="lookbook-link"><img src="images/Bazarasinan.jpeg" alt="Asinan" loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">02 Asinan</span>
+      </div>
+      <hr>
+      <div class="lookbook-card">
+        <a href="#detail-8" class="lookbook-link"><img src="images/Dessert dan Bakery.jpeg" alt="Dessert &amp; Bakery" loading="lazy"></a>
+        <span class="lookbook-card-label" style="font-family:Times New Roman; color: #000000; font-size: 16px;">03 Dessert &amp; Bakery</span>
+      </div>
+    </div>
+
+    <section class="canvas-section process" id="process">
+    <div class="process-inner">
+      <div class="process-left">
+        <h2 class="process-title reveal">Realita Di balik<br>Pembuatan Studi Kasus Website EXPO</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-step" style="font-weight: bold;">Keluh Kesah 01</div>
+          <p class="timeline-text">Lama mencari template buat tugas web karna kebanyakan template yang ada tidak sesuai dengan yang mau digunakan.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step" style="font-weight: bold;"">Keluh Kesah 02</div>
+          <p class="timeline-text">Pusing saat ukuran poto nya tidak sama semua dan nambahin efek pop up ke poto ketika diklik.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step" style="font-weight: bold;">Keluh Kesah 03</div>
+          <p class="timeline-text">Kurang nya akan pengalaman dalam pengembangan website dan buntu nya dalam penambahan akan ide" dalam pengembangan website.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-step" style="font-weight: bold;">Keluh Kesah 04</div>
+          <p class="timeline-text">Kita jadi dapat pengalaman membuat website walaupun rumit codingannya tapi saat melihat websitw berhasil berjalan dengan baik</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="canvas-section signature" id="signature">
+    <div class="signature-bg-logo" aria-hidden="true">EXPO</div>
+    <div class="signature-content reveal">
+      <div class="signature-mark">IT Fest EXPO</div>
+      <h2 class="signature-heading">Pameran Rancangan Aplikasi Website &amp; Iot</h2>
+      <p class="signature-text">Mengenal dan menghadirkan inovasi terbaru dalam dunia website dan Iot yang dikembangkan oleh para mahasiswa.</p>
+      <a href="mailto:hello@ivoryflow.studio" class="signature-email">barudak@gmail.well</a>
+      <div class="signature-phone">+882-3211-1788</div>
+      <div class="signature-links">
+        <a href="#" class="cta-link">Instagram</a>
+        <a href="#" class="cta-link">Pinterest</a>
+        <a href="#" class="cta-link">Journal</a>
+      </div>
+    </div>
+    <div class="signature-footer">
+      <a href="https://www.tooplate.com" target="_blank" rel="nofollow">Free HTML Template</a> by Tooplate &middot; The Ivory Flow
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="detail-1">
+  <a href="#lookbook" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Jadi Petani.jpeg" alt="JadiPetani">
+    <div class="modal-body">
+      <h3 class="modal-title">JadiPetani</h3>
+      <p class="modal-lead">Jadipetani adalah platform digital berbasis website yang mendukung regenerasi petani Indonesia dengan menghubungkan petani senior dan generasi muda. Fitur utamanya meliputi program magang, job connector, kurikulum berbasis AI, dan komunitas. Model bisnisnya terdiri dari paket langganan (50%), komisi layanan (30%), serta lisensi sekolah dan klinik (20%). Platform ini menggunakan React, Tailwind CSS, Express.js, Prisma ORM, PostgreSQL, Gemini AI, dan Midtrans untuk mendukung pertanian yang lebih maju.</p>
+    </div>
+    <a href="#lookbook" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-2">
+  <a href="#lookbook" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Teliti.jpeg" alt="Teliti">
+    <div class="modal-body">
+      <h3 class="modal-title">Teliti</h3>
+      <p class="modal-lead">Teliti adalah platform web berbasis AI untuk deteksi bias (7 kategori) dan konsistensi argumen dokumen akademik melalui fitur laporan lengkap, Integrity Score (0-100), dan document viewer dengan highlight. Model bisnisnya menyediakan akses gratis penuh untuk mahasiswa guna memberikan keunggulan kompetitif dibanding platform lain. Teknologi utamanya didukung oleh Gemini AI untuk menjalankan dua analisis paralel secara instan dan akurat.</p>
+    </div>
+    <a href="#lookbook" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-3">
+  <a href="#lookbook" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Kulakan.jpeg" alt="Kulakan">
+    <div class="modal-body">
+      <h3 class="modal-title">Kulakan</h3>
+      <p class="modal-lead">Kulakan adalah aplikasi manajemen bisnis perikanan yang memudahkan pengguna mengelola transaksi, stok, dan penjualan hasil laut dalam satu platform. Fitur utamanya meliputi dashboard interaktif, pengelolaan stok dan inventaris, pencatatan transaksi, peta lokasi nelayan dan pasar, serta laporan dan analisis berbasis AI. Kulakan membantu pelaku usaha perikanan memantau keuangan, mengelola persediaan, dan meningkatkan efisiensi bisnis secara digital.</p>
+    </div>
+    <a href="#lookbook" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-4">
+  <a href="#lookbook" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Titip.jpeg" alt="Titip">
+    <div class="modal-body">
+      <h3 class="modal-title">Titip</h3>
+      <p class="modal-lead">Titip adalah sistem cold storage pintar berbasis AI dan IOT yang membantu menjaga kesegaran produk<br>
+          pangan di pasar tradisional. Sistem ini dilengkapi sensor suhu kelembapan, dan gas untuk memantau<br>
+          kondisi penyimpanan secara real-time, serta AI untuk memprediksi masa layak jual produk. Fitur utamanya <br>
+          meliputi pemantauan melalui dashbord PWA, penyewaan loker pendingin, akses otomatis menggukana QR code,<br>
+          dan pembayaran digital terintegrasi QRIS.</p>
+    </div>
+    <a href="#lookbook" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-5">
+  <a href="#lookbook" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/ivory-flow-15.jpg" alt="Paramaflood Monitor">
+    <div class="modal-body">
+      <h3 class="modal-title">Paramaflood Monitor</h3>
+      <p class="modal-lead">Paramaflood monitor adalah sistem pemantauan cuaca dan peringatan<br>
+        dini banjir berbasis IOT dan AI, Sistem ini menggunakan sensor untuk<br>
+        memantau kondisi lingkungan secara real-time, memprediksi potensi <br>
+        banjir dengan teknologi LSTM, dan memberikan notifikasi dan rekomendasi keselamatan melalui aplikasi mobile flutter.</p>
+    </div>
+    <a href="#lookbook" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-6">
+  <a href="#product" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/chicken.jpeg" alt="Chicken Crispy Roll">
+    <div class="modal-body">
+      <h3 class="modal-title">Chicken Crispy Roll</h3>
+      <p class="modal-lead">Khoki Chikura menyajikan Chicken Crispy Roll dengan tekstur yang renyah di luar dan lumer di dalam mulut. Tersedia berbagai macam pilihan saus celup dan bumbu tabur yang bikin nagih, tetapi tempat bazaar tidak terlalu strategis tidak menyediakan menu harga.</p>
+    </div>
+    <a href="#product" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-7">
+  <a href="#product" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Asinan.jpeg" alt="Asinan Kiamboy">
+    <div class="modal-body">
+      <h3 class="modal-title">Asinan Kiamboy</h3>
+      <p class="modal-lead">Perpaduan buah segar premium dengan kuah kiamboy tradisional khas Asia yang menghasilkan cita rasa manis, asam, asin, gurih, pedas, dan segar sekaligus, namun sangat disayangkan tempat bazaar tidak menyediakan menu harga.</p>
+    </div>
+    <a href="#product" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+<div class="modal" id="detail-8">
+  <a href="#product" class="modal-backdrop" aria-label="Tutup"></a>
+  <div class="modal-panel">
+    <img src="images/Dessert dan Bakery.jpeg" alt="Dessert &amp; Bakery">
+    <div class="modal-body">
+      <h3 class="modal-title">Buumbake</h3>
+      <p class="modal-lead">Menyajikan aneka hidangan penutup (dessert) manis, kue kering premium, serta camilan kue box yang cocok untuk menemani waktu santai Anda selama acara IT Fest, namun sangat disayangkan tempat bazaar tidak menyediakan menu harga.</p>
+    </div>
+    <a href="#product" class="modal-close" aria-label="Tutup">&#10005;</a>
+  </div>
+</div>
+
+</body>
 </html>
